@@ -1,0 +1,154 @@
+
+                            UNIVARIATE ANALYSIS IN R - MEASURES OF CENTRAL TENDENCY
+Name:  D.AnjiReddy
+Reg No: 191911344
+Subject : Statics with r programming
+Subject Code: 
+Exercise:
+I. ARITHMETIC MEAN
+a) Write suitable R code to compute the average of the following values.
+12,7,3,4.2,18,2,54,-21,8,-5
+Program:
+> a = c(12,7,3,4.2,18,2,54,-21,8,-5)
+> result.mean <- mean(a)
+> print(result.mean)
+output:
+[1] 8.22
+b) Compute the mean after applying the trim option and removing 3 values from each
+end.
+program:
+> data <- c(12,7,3,4.2,18,2,54,-21,8,-5)
+> sorted_data <- sort(data)
+> trimmed_data <- sorted_data[4:(length(sorted_data)-3)]
+> mean(trimmed_data)
+output:
+[1] 5.55
+c) Compute the mean of the following vector .
+(12,7,3,4.2,18,2,54,-21,8,-5,NA)
+#If there are missing values, then the mean function returns NA.
+# Find mean dropping NA values.
+#To drop the missing values from the calculation use na.rm = TRUE
+program:
+> a = c(12,7,3,4.2,18,2,54,-21,8,-5,NA)
+> result.mean <- mean(a)
+> print(result.mean)
+[1] NA
+> result.mean <-  mean(x,na.rm = TRUE)
+> print(result.mean)
+[1] 8.22
+II.MEDIAN
+Write suitable R code to compute the median of the following values.
+12,7,3,4.2,18,2,54,-21,8,-5
+program:
+> a = c(12,7,3,4.2,18,2,54,-21,8,-5)
+> result.median <- median(a)
+> print(result.median)
+[1] 5.6
+
+III. MODE
+Calculate the mode for the following numeric as well as character data set in R.
+(2,1,2,3,1,2,3,4,1,5,5,3,2,3) , (&quot;o&quot;,&quot;it&quot;,&quot;the&quot;,&quot;it&quot;,&quot;it&quot;)
+program:
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+v <- c(2,1,2,3,1,2,3,4,1,5,5,3,2,3)
+result <- getmode(v)
+print(result)
+output:
+[1] 2
+[1] "it"
+UNIVARIATE ANALYSIS IN R - MEASURES OF DISPERSION
+Exercise: 1
+Download mpg dataset which contains Fuel economy data from 1999 and 2008 for 38
+popular models of car from the URL given below.
+program:
+i) Find the car which gives maximum city miles per gallon.
+program:
+> View(mpg)
+> max(mpg$cty)
+output:
+[1] 35
+ii) Find the cars which gives minimum disp in compact and subcompact class
+program:
+> min(mpg$cty)
+Output:
+[1] 9
+Exercise: 2
+Use the same dataset as used in Exercise 1 and perform the following queries
+i) Find the standard deviation of city milles per gallon
+Program:
+> sd(mpg$cty)
+Output:
+[1] 4.255946
+ii) Find the variance of highway milles per gallon
+Program:
+> var(mpg$cty)
+Output:
+[1] 18.11307
+Exercise 3
+Use the same dataset and perform the following queries
+i) Find the range of the disp in the data set mpg
+Program:
+> range(mpg$displ)
+Output:
+[1] 1.6 7.0
+ii) Find the Quartile of the disp in the data set mpg
+Program:
+> quantile(mpg$displ)
+output:
+0%  25%  50%  75% 100% 
+ 1.6  2.4  3.3  4.6  7.0 
+iii) Find the IQR of the disp column in the data set mpg
+Program:
+> IQR(mpg$displ)
+Output:
+[1] 2.2
+
+                                                    
+                                                                         
+                                                                   VISUALIZATION IN R
+
+1. Write a program for creating a pie-chart in R using the input vector(21,62,10,53).
+Provide labels for the chart as ‘London’, ‘New York’, ‘Singapore’, ‘Mumbai’. Add a
+title to the chart as ‘city pie-chart’ and add a legend at the top right corner of the chart.
+program:
+x <- c(21, 62, 10, 53)
+labels <- c("London", "New York", "Singapore", "Mumbai")
+png(file = "city_title_colours.jpg")
+pie(x, labels, main = "City pie chart", col = rainbow(length(x)))
+dev.off()
+output:
+
+3. Write a program for creating a bar chart using the vectors H=c(7,12,28,3,41) and
+M=c(“mar”, “apr”, “may”, “jun”, “jul”). Add a title to the chart as “Revenue chart”.
+program:
+A <- c(7,12,28,3,41)
+B <- c("Mar","Apr","May","Jun","Jul")
+png(file = "barchart_months_revenue.png")
+barplot(A,names.arg=B,xlab="Month",ylab="Revenue",col="blue",
+main="Revenue chart",border="red")
+dev.off()
+output:
+
+4. Make a histogram for the “AirPassengers“dataset, start at 100 on the x-axis, and from
+values 200 to 700, make the bins 200 wide.
+program:
+ hist(AirPassengers, breaks=c(100, seq(200,700, 150)))
+output:
+
+5. Create a Boxplot graph for the relation between &quot;mpg&quot;(miles per galloon) and
+&quot;cyl&quot;(number of Cylinders) for the dataset &quot;mtcars&quot; available in R Environment.
+program:
+png(file = "boxplot.png")
+boxplot(mpg ~ cyl, data = mtcars, xlab = "Number of Cylinders",
+   ylab = "Miles Per Gallon", main = "Mileage Data")
+dev.off()
+otuput:
+
+
+
+
+
+
